@@ -13,12 +13,18 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-
+    
     var movieData: [[String: Any]] = [[:]]
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    //    activityIndicator.startAnimating()
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+
+        tableView.insertSubview(refreshControl, at: 0)
         tableView.dataSource = self
         tableView.rowHeight = 250
         
@@ -48,6 +54,10 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
         
         }
+    
+    @objc func didPullToRefresh() {
+        refreshControl.endRefreshing()
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movieData.count
     }
