@@ -7,16 +7,20 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
 
+    var movieData: [[String: Any]] = [[:]]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
+        tableView.rowHeight = 250
         
       let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=dca4026e34b5abb1139f4dfbe652ac3c")!
       let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
@@ -30,10 +34,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
             }else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let movies = dataDictionary["results"] as! [[String: Any]]
-                for movie in movies {
-                    let title = movie["title"] as! String
-                    print(title)
-            }
+                self.movieData = movies
+                self.tableView.reloadData()
         }
        
     }
@@ -47,16 +49,32 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         
         }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return movieData.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        
+        let movie = movieData[indexPath.item]
+        
+       
+        cell.titleLabel.text = movie["original_title"] as? String
+        cell.overViewLabel.text = movie["overview"] as? String
+        
+        let posterPathString = movie["poster_path"] as? String
+        let baseUrlString = "https://image.tmdb.org/t/p/w500"
+        print(posterPathString)
+        if posterPathString != nil {
+            let imageUrlString = baseUrlString + posterPathString!
+            let imageUrl = URL(string: imageUrlString)
+            cell.imageLabel.af_setImage(withURL: imageUrl!)
+        }
+        
         return cell
         
     }
-    }
+}
 
 
 
