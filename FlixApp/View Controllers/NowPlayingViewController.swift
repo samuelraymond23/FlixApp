@@ -26,7 +26,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
 
         tableView.insertSubview(refreshControl, at: 0)
         tableView.dataSource = self
-        tableView.rowHeight = 250
+        tableView.rowHeight = 200
         
       let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=dca4026e34b5abb1139f4dfbe652ac3c")!
       let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)

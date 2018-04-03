@@ -24,7 +24,7 @@ class SuperHeroViewController: UIViewController, UICollectionViewDataSource {
         let interItemSpacingTotal = (layout.minimumInteritemSpacing + addedHeaderAndLeftSpacing) * (cellsPerLine - 1)
         let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal/cellsPerLine
         
-        layout.itemSize = CGSize(width: width, height: width * 3/2)
+        layout.itemSize = CGSize(width: width, height: width * 3/2) 
         
         fetchMovies()
     }
