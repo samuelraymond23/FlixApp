@@ -16,7 +16,7 @@ enum MovieKeys {
 
 class DetailViewController: UIViewController
     {
-    var movie: [String: Any]?
+    
     
     @IBOutlet var backDropImageView: UIImageView!
     
@@ -28,25 +28,29 @@ class DetailViewController: UIViewController
     
     @IBOutlet var overviewLabel: UILabel!
     
+    var photoUrl: URL!
+    
+    var movie: Movie?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         
         if let movie = movie {
-            titleLabel.text = movie[MovieKeys.title] as? String
-            releaseDateLabel.text = movie["release_date"] as? String
-            overviewLabel.text = movie["overview"] as? String
-            let backdropPathString = movie[MovieKeys.backdropPath] as! String
-            let posterPathString = movie["poster_path"] as! String
-            let baseUrlString = "https://image.tmdb.org/t/p/w500"
+            titleLabel.text = movie.title
+            releaseDateLabel.text = movie.release_date
+            overviewLabel.text = movie.overview
             
-            let backdropURL = URL(string: baseUrlString + backdropPathString)!
-            backDropImageView.af_setImage(withURL: backdropURL)
+            if posterImageView != nil {
+                posterImageView.af_setImage(withURL: movie.posterUrl!)
+            }
             
-            let posterPathURL = URL(string: baseUrlString + posterPathString)!
-            posterImageView.af_setImage(withURL: posterPathURL)
+            if backDropImageView != nil {
+                backDropImageView.af_setImage(withURL: movie.backdropUrl!)
+            }
         }
+        
     }
 
     override func didReceiveMemoryWarning() {

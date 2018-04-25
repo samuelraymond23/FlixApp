@@ -14,7 +14,7 @@
         <!--Movies-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="NowPlayingViewController" customModule="FlixApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="Now_PlayingViewController" customModule="FlixApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,13 +37,13 @@
                                                         <constraint firstAttribute="width" constant="115" id="bcH-Wi-Tjw"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fifty Shades Freed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKS-9V-mQu">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Fifty Shades Freed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKS-9V-mQu">
                                                     <rect key="frame" x="123" y="0.0" width="249" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gdq-N3-h6v">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gdq-N3-h6v">
                                                     <rect key="frame" x="123" y="26" width="249" height="159"/>
                                                     <string key="text">Believing they have left behind shadowy figures from their past, newlyweds Christian and Ana fully embrace an inextricable connection and shared life of luxury. But just as she steps into her role as Mrs. Grey and he relaxes into an unfamiliar stability, new threats could jeopardize their happy ending before it even begins</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -53,12 +53,22 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="Gdq-N3-h6v" secondAttribute="trailing" constant="3" id="1Gh-2y-whK"/>
+                                                <constraint firstItem="KKS-9V-mQu" firstAttribute="leading" secondItem="9ey-fS-kdX" secondAttribute="trailing" constant="8" id="1kR-jQ-Y6t"/>
+                                                <constraint firstAttribute="trailing" secondItem="KKS-9V-mQu" secondAttribute="trailing" constant="3" id="3kZ-UA-ehD"/>
                                                 <constraint firstAttribute="trailing" secondItem="KKS-9V-mQu" secondAttribute="trailing" constant="3" id="4nm-bN-jRj"/>
+                                                <constraint firstAttribute="trailing" secondItem="Gdq-N3-h6v" secondAttribute="trailing" constant="3" id="7rJ-r2-2Rw"/>
+                                                <constraint firstAttribute="bottom" secondItem="Gdq-N3-h6v" secondAttribute="bottom" constant="10" id="9gM-KD-NgZ"/>
+                                                <constraint firstItem="9ey-fS-kdX" firstAttribute="top" secondItem="BI1-oy-jdq" secondAttribute="top" id="Gjh-6H-i82"/>
                                                 <constraint firstItem="9ey-fS-kdX" firstAttribute="leading" secondItem="BI1-oy-jdq" secondAttribute="leading" id="Izw-JA-iVD"/>
                                                 <constraint firstItem="9ey-fS-kdX" firstAttribute="top" secondItem="BI1-oy-jdq" secondAttribute="top" id="PJo-eh-HJM"/>
+                                                <constraint firstItem="KKS-9V-mQu" firstAttribute="leading" secondItem="9ey-fS-kdX" secondAttribute="trailing" constant="8" id="Ppu-b6-iTH"/>
+                                                <constraint firstItem="Gdq-N3-h6v" firstAttribute="top" secondItem="KKS-9V-mQu" secondAttribute="bottom" constant="5" id="R6p-Xe-KO8"/>
                                                 <constraint firstItem="Gdq-N3-h6v" firstAttribute="top" secondItem="KKS-9V-mQu" secondAttribute="bottom" constant="5" id="X7n-QG-jWv"/>
                                                 <constraint firstItem="KKS-9V-mQu" firstAttribute="leading" secondItem="9ey-fS-kdX" secondAttribute="trailing" constant="8" id="fry-oW-frj"/>
+                                                <constraint firstItem="Gdq-N3-h6v" firstAttribute="leading" secondItem="9ey-fS-kdX" secondAttribute="trailing" constant="8" id="gYe-Uw-K99"/>
+                                                <constraint firstAttribute="bottom" secondItem="9ey-fS-kdX" secondAttribute="bottom" constant="22.5" id="nEl-cZ-oZ4"/>
                                                 <constraint firstItem="KKS-9V-mQu" firstAttribute="top" secondItem="BI1-oy-jdq" secondAttribute="top" id="qFN-SF-0PD"/>
+                                                <constraint firstItem="Gdq-N3-h6v" firstAttribute="top" secondItem="KKS-9V-mQu" secondAttribute="bottom" constant="5" id="r2g-W4-3Py"/>
                                                 <constraint firstItem="Gdq-N3-h6v" firstAttribute="top" secondItem="KKS-9V-mQu" secondAttribute="bottom" constant="5" id="r3n-6Z-b9R"/>
                                                 <constraint firstItem="Gdq-N3-h6v" firstAttribute="leading" secondItem="9ey-fS-kdX" secondAttribute="trailing" constant="8" id="sdM-mS-OSU"/>
                                             </constraints>
@@ -84,7 +94,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="XzI-05-Shr"/>
                     <connections>
-                        <outlet property="tableView" destination="pD6-nj-BiG" id="oDm-7I-XVI"/>
+                        <outlet property="tableView" destination="pD6-nj-BiG" id="v7L-AL-qf6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

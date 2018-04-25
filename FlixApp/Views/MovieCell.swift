@@ -9,6 +9,16 @@
 import UIKit
 
 class MovieCell: UITableViewCell {
+    
+    var movie: Movie! {
+        didSet {
+            if movie.posterUrl != nil {
+                imageLabel.af_setImage(withURL: movie.posterUrl!)
+            }
+            titleLabel.text = movie.title
+            overViewLabel.text = movie.overview
+        }
+    }
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overViewLabel: UILabel!

@@ -6,71 +6,77 @@
 //  Copyright © 2018 Samuel Raymond. All rights reserved.
 //
 
+
 import UIKit
+import AlamofireImage
+
 
 class SuperHeroViewController: UIViewController, UICollectionViewDataSource {
-
-    @IBOutlet var collectionView: UICollectionView!
     
-    var movieData: [[String: Any]] = []
+    @IBOutlet weak var collectionView: UICollectionView!
+    var movies: [Movie] = []
+    var refresh: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(SuperHeroViewController.pullToRefresh(_:)),
+                          for: .valueChanged)
+        
+        self.navigationItem.title = "Superhero"
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.backgroundColor = UIColor(red: 1.0, green: 0.25, blue: 0.25, alpha: 0.8)
+        }
+        
         collectionView.dataSource = self
+        fetchMovies()
         
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let cellsPerLine: CGFloat = 2
-        let addedHeaderAndLeftSpacing:CGFloat = 20
-        let interItemSpacingTotal = (layout.minimumInteritemSpacing + addedHeaderAndLeftSpacing) * (cellsPerLine - 1)
-        let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal/cellsPerLine
-        
-        layout.itemSize = CGSize(width: width, height: width * 3/2) 
-        
+        // Do any additional setup after loading the view.
+    }
+    
+    @objc func  pullToRefresh(_ refresh: UIRefreshControl) {
         fetchMovies()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieData.count
+        return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PosterCell", for: indexPath) as! PosterCell
-        let movie = movieData[indexPath.item]
-        if let posterPathString = movie["poster_path"] as? String {
-            let baseURLString = "https://image.tmdb.org/t/p/w500"
-            let posterURL = URL(string: baseURLString + posterPathString)!
-            cell.posterImageView.af_setImage(withURL: posterURL)
+        let newMovie = movies[indexPath.item]
+        if newMovie.posterUrl != nil {
+            cell.posterImageView.af_setImage(withURL: newMovie.posterUrl!)
         }
         return cell
     }
     
-    func fetchMovies(){
-    let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=dca4026e34b5abb1139f4dfbe652ac3c")!
-    let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-    let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-    
-    let task = session.dataTask(with: request) { (data, response, error) in
-        // This will run when the network request returns
-        if let error = error {
-            print(error.localizedDescription)
-            
-        }else if let data = data {
-            let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-            let movies = dataDictionary["results"] as! [[String: Any]]
-            self.movieData = movies
-            self.collectionView.reloadData()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell =  sender as! UICollectionViewCell
+        if let indexPath = collectionView.indexPath(for: cell) {
+            let newMovie = movies[indexPath.item]
+            let destinationViewController = segue.destination as! DetailViewController
+            destinationViewController.movie = newMovie
+            destinationViewController.photoUrl = newMovie.posterUrl
         }
-        
-    }
-    task.resume()
     }
     
-
+    func fetchMovies() {
+        MovieApiManager().superheroMovies { (movies: [Movie]?, error: Error?) in
+            if let movies = movies {
+                self.movies = movies
+                self.collectionView.reloadData()
+                self.refresh.endRefreshing()
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+
 
     /*
     // MARK: - Navigation
