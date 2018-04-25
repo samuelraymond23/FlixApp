@@ -1,21 +1,17 @@
-# Lab 3 - *FlixApp*
+# Lab 5 - *Models and Networking*
 
-**Name of your app** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+**Flix App** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **1** hours spent in total
+Time spent: **X** hours spent in total
 
 ## User Stories
 
 The following **required** user stories are complete:
 
-- The following screens use AutoLayout to adapt to various orientations and screen sizes
-   - [X] Movie feed view (+3pt)
-   - [X] Detail view (+2pt)
-
-The following **stretch** user stories are implemented:
-
-- [ ] Dynamic Height Cells (+1)
-- [ ] Collection View AutoLayout (+2)
+- [ ] Create a movie model (+2pt)
+- [ ] Implement the movie model (+2pt)
+- [ ] Implement property observers (+2pt)
+- [ ] Create a basic API Client (+2pt)
 
 The following **additional** user stories are implemented:
 
