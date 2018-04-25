@@ -2,16 +2,16 @@
 
 **Flix App** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: **2** hours spent in total
 
 ## User Stories
 
 The following **required** user stories are complete:
 
-- [ ] Create a movie model (+2pt)
-- [ ] Implement the movie model (+2pt)
-- [ ] Implement property observers (+2pt)
-- [ ] Create a basic API Client (+2pt)
+- [X] Create a movie model (+2pt)
+- [X] Implement the movie model (+2pt)
+- [X] Implement property observers (+2pt)
+- [X] Create a basic API Client (+2pt)
 
 The following **additional** user stories are implemented:
 
